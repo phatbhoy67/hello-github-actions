@@ -1,11 +1,28 @@
-name: A workflow for my Hello World file
-on: push
+#name: A workflow for my Hello World file
+#on: push
+#jobs:
+#  build:
+#    name: Hello world action
+#    runs-on: ubuntu-latest    
+#    steps:
+#    - uses: actions/checkout@v1
+#    - uses: ./action-a
+#      env:
+#        MY_NAME: "Mona"
+
+name: Triage
+on:
+  issues:
+    types: [opened]
 jobs:
-  build:
-    name: Hello world action
-    runs-on: ubuntu-latest    
+  applyTriageLabel:
+    name: Apply Triage Label
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./action-a
-      env:
-        MY_NAME: "Mona"
+      - uses: actions/checkout@master
+      - name: Apply Triage Label
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: label triage
