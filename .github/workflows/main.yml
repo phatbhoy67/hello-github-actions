@@ -26,3 +26,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: label triage
+          
+  commentOnNewIssues:
+      name: Comment On New Issues
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
+        - name: Comment On New Issues
+          uses: actions/github@v1.0.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            args: comment "Hello World"
+            
+  assignMonaLisa:
+    name: Assign MonaLisa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Assign MonaLisa
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: assign @phatbhoy67
